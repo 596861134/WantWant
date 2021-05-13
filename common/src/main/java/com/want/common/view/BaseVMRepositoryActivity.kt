@@ -31,7 +31,7 @@ abstract class BaseVMRepositoryActivity<VM: BaseRepositoryViewModel<*>>(@LayoutR
 
         onViewInit()
         mRealVM.setBundle(intent.extras ?: Bundle())
-        mRealVM.onModeBind()
+        mRealVM.onModelBind()
         onEvent()
     }
 

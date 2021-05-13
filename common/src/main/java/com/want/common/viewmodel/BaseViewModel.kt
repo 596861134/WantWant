@@ -22,7 +22,7 @@ open class BaseViewModel(app: Application) :AndroidViewModel(app){
         mBundle = bundle
     }
 
-    open fun onModeBind(){
+    open fun onModelBind(){
     }
 
     fun finish(){

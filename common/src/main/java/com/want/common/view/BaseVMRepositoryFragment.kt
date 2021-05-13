@@ -36,7 +36,7 @@ abstract class BaseVMRepositoryFragment<VM: BaseRepositoryViewModel<*>>(@LayoutR
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onViewInit()
-        mRealVM.onModeBind()
+        mRealVM.onModelBind()
         onEvent()
     }
 

@@ -20,7 +20,7 @@ open class BaseViewModelFragment<VM:BaseLayoutViewModel>(@LayoutRes private val 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         beforeSetView()
         mRealVM = ViewModelProvider(this)[clazz]
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,layoutId,null,false)
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,layoutId,container,false)
         binding.lifecycleOwner = this
         binding.setVariable(mRealVM.id(),mRealVM)
         binding.executePendingBindings()
@@ -30,7 +30,7 @@ open class BaseViewModelFragment<VM:BaseLayoutViewModel>(@LayoutRes private val 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onViewInit()
-        mRealVM.onModeBind()
+        mRealVM.onModelBind()
         onEvent()
     }
 

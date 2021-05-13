@@ -40,7 +40,7 @@ open class BaseDialog<T: BaseLayoutViewModel>(
         window?.attributes = attributes
 
         initView()
-        mRealVM.onModeBind()
+        mRealVM.onModelBind()
         initData()
     }
 
