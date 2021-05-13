@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "WantWant"
+include ':common'
+include ':network'

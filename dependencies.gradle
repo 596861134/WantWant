@@ -1,0 +1,107 @@
+//配置各个module共用的参数
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'//kotlin语言使用注入框架，dataBinding都需要这个
+apply plugin: 'androidx.navigation.safeargs.kotlin'//用于navigation传参的时候一种安全防护,非空，类型判断等。
+
+android {
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+
+    defaultConfig {
+        minSdkVersion min_sdk_verion
+        targetSdkVersion target_sdk_version
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //使用jetPack的组件，会要求jdk 1.8最好，有的时候会遇到报错，需要配置如下，避免target jvm 1.8的那个报错
+    kotlinOptions {
+        jvmTarget = "1.8"
+        //        freeCompilerArgs += ["-Xuse-experimental=kotlin.contracts.ExperimentalContracts",]
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn",]
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // 平台相关的基础库
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+    implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+
+    implementation "com.google.android.material:material:1.3.0"
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:2.2.0"
+    kapt "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+
+    //room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    //注意配置navigation版本号的时候，project下的build.gradle的class path也需要同步navigation的版本号配置
+    implementation "androidx.navigation:navigation-ui:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-runtime:$navigation_version"
+
+    // gson
+    implementation "com.google.code.gson:gson:2.8.6"
+
+    //glide
+    api "com.github.bumptech.glide:glide:4.12.0"
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //utils
+    api "com.blankj:utilcodex:1.29.0"
+
+    // okHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //rxjava3
+    implementation "io.reactivex.rxjava3:rxjava:3.0.12"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test:core:1.3.0'
+    androidTestImplementation 'androidx.test:core-ktx:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+}
