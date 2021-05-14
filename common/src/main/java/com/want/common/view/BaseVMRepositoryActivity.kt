@@ -13,10 +13,10 @@ import com.want.common.viewmodel.BaseViewModelFactory
 /**
  * Created by chengzf on 2021/5/13.
  */
-abstract class BaseVMRepositoryActivity<VM: BaseRepositoryViewModel<*>>(@LayoutRes private val layoutId:Int):BaseActivity(), ViewState {
+abstract class BaseVMRepositoryActivity<VM: BaseRepositoryViewModel<*>, T:ViewDataBinding>(@LayoutRes private val layoutId:Int):BaseActivity(), ViewState {
 
     lateinit var mRealVM:VM
-
+    lateinit var mBinding: T
     abstract fun getViewModel(app: Application): VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +24,10 @@ abstract class BaseVMRepositoryActivity<VM: BaseRepositoryViewModel<*>>(@LayoutR
         beforeSetView()
         val vm = getViewModel(application)
         mRealVM = ViewModelProvider(this,BaseViewModelFactory(application,vm))[vm::class.java]
-        val binding = DataBindingUtil.setContentView<ViewDataBinding>(this,layoutId)
-        binding.lifecycleOwner = this
-        binding.setVariable(mRealVM.id(),mRealVM)
-        binding.executePendingBindings()
+        mBinding = DataBindingUtil.setContentView(this,layoutId)
+        mBinding.lifecycleOwner = this
+        mBinding.setVariable(mRealVM.id(),mRealVM)
+        mBinding.executePendingBindings()
 
         onViewInit()
         mRealVM.setBundle(intent.extras ?: Bundle())

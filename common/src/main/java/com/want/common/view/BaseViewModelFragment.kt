@@ -14,17 +14,17 @@ import com.want.common.viewmodel.BaseLayoutViewModel
 /**
  * Created by chengzf on 2021/5/13.
  */
-open class BaseViewModelFragment<VM:BaseLayoutViewModel>(@LayoutRes private val layoutId:Int, private val clazz:Class<VM>):BaseFragment(), ViewState {
+open class BaseViewModelFragment<VM:BaseLayoutViewModel, T:ViewDataBinding>(@LayoutRes private val layoutId:Int, private val clazz:Class<VM>):BaseFragment(), ViewState {
     lateinit var mRealVM: VM
-
+    lateinit var mBinding: T
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         beforeSetView()
         mRealVM = ViewModelProvider(this)[clazz]
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,layoutId,container,false)
-        binding.lifecycleOwner = this
-        binding.setVariable(mRealVM.id(),mRealVM)
-        binding.executePendingBindings()
-        return binding.root
+        mBinding = DataBindingUtil.inflate(inflater,layoutId,container,false)
+        mBinding.lifecycleOwner = this
+        mBinding.setVariable(mRealVM.id(),mRealVM)
+        mBinding.executePendingBindings()
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

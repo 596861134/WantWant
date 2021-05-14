@@ -16,21 +16,21 @@ import com.want.common.viewmodel.BaseViewModelFactory
 /**
  * Created by chengzf on 2021/5/13.
  */
-abstract class BaseVMRepositoryFragment<VM: BaseRepositoryViewModel<*>>(@LayoutRes private val layoutId: Int):BaseFragment(),ViewState {
+abstract class BaseVMRepositoryFragment<VM: BaseRepositoryViewModel<*>, T:ViewDataBinding>(@LayoutRes private val layoutId: Int):BaseFragment(),ViewState {
 
     lateinit var mRealVM: VM
-
+    lateinit var mBinding: T
     abstract fun getViewModel(app: Application): VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         beforeSetView()
         val vm = getViewModel(mActivity.application)
         mRealVM = ViewModelProvider(this,BaseViewModelFactory(mActivity.application,vm))[vm::class.java]
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,layoutId,container,false)
-        binding.lifecycleOwner = this
-        binding.setVariable(mRealVM.id(),mRealVM)
-        binding.executePendingBindings()
-        return binding.root
+        mBinding = DataBindingUtil.inflate(inflater,layoutId,container,false)
+        mBinding.lifecycleOwner = this
+        mBinding.setVariable(mRealVM.id(),mRealVM)
+        mBinding.executePendingBindings()
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
