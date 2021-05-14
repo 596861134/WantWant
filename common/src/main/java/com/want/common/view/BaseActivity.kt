@@ -15,24 +15,24 @@ import java.io.Serializable
  */
 open class BaseActivity:AppCompatActivity() {
 
-    private lateinit var mDialog:LoadingDialog
+    private var mDialog:LoadingDialog? = null
 
     private fun initDialog():LoadingDialog{
         if (mDialog.isNull()){
             mDialog = LoadingDialog(this)
         }
-        return mDialog
+        return mDialog!!
     }
 
     fun showDialog(){
         initDialog()
-        mDialog.show()
+        mDialog?.show()
     }
 
     fun dismissDialog(){
         initDialog()
-        if (mDialog.isShowing.truely()){
-            mDialog.dismiss()
+        if (mDialog?.isShowing.truely()){
+            mDialog?.dismiss()
         }
     }
 

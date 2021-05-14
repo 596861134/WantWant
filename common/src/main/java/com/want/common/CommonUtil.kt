@@ -9,6 +9,8 @@ import com.want.common.utils.MMKVUtil
  */
 object CommonUtil {
 
+    const val TAG = "Want-Want"
+
     fun initCommon(){
         CLog.init(BaseApplication.isDebug())
         CrashHandler.getInstance().init(BaseApplication.getContext())

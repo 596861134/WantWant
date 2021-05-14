@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="title"
+            type="com.want.want.viewmodel.TitleViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@{title.background}"
+        tools:background="@color/colorAccent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:drawableLeft="@{title.leftDrawable}"
+            android:gravity="center"
+            android:onClick="@{()->title.leftAction.invoke()}"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:scaleType="centerInside"
+            android:text="@{title.leftText}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:drawableStart="@drawable/abc_vector_test" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp_80"
+            android:layout_marginEnd="@dimen/dp_80"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{title.mTitle}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="标题" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:drawableEnd="@{title.mRightDrawable}"
+            android:onClick="@{()->title.rightAction.invoke()}"
+            android:text="@{title.rightText}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="标题" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,39 +1,14 @@
 package com.want.want.fragment
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.app.Application
+import com.want.common.view.BaseVMRepositoryFragment
 import com.want.want.R
-import com.want.want.viewmodel.HomeViewModel
+import com.want.want.databinding.HomeFragmentBinding
+import com.want.want.home.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseVMRepositoryFragment<HomeViewModel,HomeFragmentBinding>(R.layout.home_fragment) {
 
-    companion object {
-        fun newInstance() = HomeFragment()
+    override fun getViewModel(app: Application): HomeViewModel {
+        return HomeViewModel(app)
     }
-
-    private lateinit var viewModel: HomeViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("TAG", "onDestroy: HomeFragment")
-    }
-
 }
