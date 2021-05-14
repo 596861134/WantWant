@@ -3,9 +3,10 @@ package com.want.want.activity
 import com.want.common.utils.delay
 import com.want.common.view.BaseViewModelActivity
 import com.want.want.R
-import com.want.want.viewmodel.SplashViewModel
+import com.want.want.databinding.ActivitySplashBinding
+import com.want.want.viewmodel.CommonViewModel
 
-class SplashActivity : BaseViewModelActivity<SplashViewModel>(R.layout.activity_splash,SplashViewModel::class.java) {
+class SplashActivity : BaseViewModelActivity<CommonViewModel, ActivitySplashBinding>(R.layout.activity_splash,CommonViewModel::class.java) {
 
     override fun onViewInit() {
         super.onViewInit()

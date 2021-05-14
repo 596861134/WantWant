@@ -8,32 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.want.want.R
-import com.want.want.viewmodel.HomeViewModel
+import com.want.want.viewmodel.FindViewModel
 
-class HomeFragment : Fragment() {
+class FindFragment : Fragment() {
 
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = FindFragment()
     }
 
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: FindViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        return inflater.inflate(R.layout.find_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FindViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.e("TAG", "onDestroy: HomeFragment")
+        Log.e("TAG", "onDestroy: FindFragment")
     }
 
 }

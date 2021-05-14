@@ -11,17 +11,18 @@ import com.want.common.viewmodel.BaseLayoutViewModel
 /**
  * Created by chengzf on 2021/5/13.
  */
-open class BaseViewModelActivity<VM:BaseLayoutViewModel>(@LayoutRes private val layoutId:Int,private val clazz:Class<VM>):BaseActivity(),ViewState {
+open class BaseViewModelActivity<VM:BaseLayoutViewModel, T:ViewDataBinding>(@LayoutRes private val layoutId:Int,private val clazz:Class<VM>):BaseActivity(),ViewState {
 
-    lateinit var mRealVM:VM
+    lateinit var mRealVM: VM
+    lateinit var mBinding: T
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         beforeSetView()
-        val binding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutId)
         mRealVM = ViewModelProvider(this)[clazz]
-        binding.setVariable(mRealVM.id(), mRealVM)
-        binding.lifecycleOwner = this
-        binding.executePendingBindings()
+        mBinding = DataBindingUtil.setContentView(this, layoutId)
+        mBinding.setVariable(mRealVM.id(), mRealVM)
+        mBinding.lifecycleOwner = this
+        mBinding.executePendingBindings()
         onViewInit()
         mRealVM.setBundle(intent.extras ?: Bundle())
         mRealVM.onModelBind()

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/nav_bottom_selector_0"
+        android:title="@string/radio_home_text" />
+
+    <item
+        android:id="@+id/questionsFragment"
+        android:icon="@drawable/nav_bottom_selector_1"
+        android:title="@string/radio_qa_text" />
+
+    <item
+        android:id="@+id/collectionFragment"
+        android:icon="@drawable/nav_bottom_selector_2"
+        android:title="@string/radio_collection_text" />
+
+    <item
+        android:id="@+id/findFragment"
+        android:icon="@drawable/nav_bottom_selector_3"
+        android:title="@string/radio_find_text" />
+
+    <item
+        android:id="@+id/meFragment"
+        android:icon="@drawable/nav_bottom_selector_4"
+        android:title="@string/radio_me_text" />
+</menu>
