@@ -2,9 +2,8 @@ package com.want.want.bean
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import com.want.common.CommonUtil.TAG
+import com.want.common.CommonUtil
 import com.want.common.utils.getResDimen
 import com.want.common.utils.logWithTag
 import com.want.common.viewmodel.BaseViewModel
@@ -32,7 +31,7 @@ class BannerViewModel(app:Application):BaseViewModel(app){
     val mPageTransformer = ObservableField<ViewPager2.PageTransformer>(ZoomOutPageTransformer())
 
     val mBannerClickListener = OnBannerListener<BannerBean> {data, position ->
-        "position = $position".logWithTag(TAG)
+        "position = $position".logWithTag(CommonUtil.TAG)
     }
 
     var mCurrentPage = 0

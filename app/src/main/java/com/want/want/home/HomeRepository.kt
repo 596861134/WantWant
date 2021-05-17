@@ -1,8 +1,11 @@
 package com.want.want.home
 
+import com.blankj.utilcode.util.NetworkUtils
+import com.want.network.util.netError
 import com.want.network.util.response
 import com.want.want.bean.ArrayDataBean
 import com.want.want.bean.BannerDataBean
+import com.want.want.bean.ObjectDataBean
 import com.want.want.network.NetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -13,6 +16,9 @@ import kotlinx.coroutines.withContext
  */
 class HomeRepository:NetRepository() {
 
+    /**
+     * 获取Banner轮播图
+     */
     suspend fun banner() :BannerDataBean?{
         return withContext(Dispatchers.Default){
             async {
@@ -26,6 +32,9 @@ class HomeRepository:NetRepository() {
         }.await()
     }
 
+    /**
+     * 获取置顶文章
+     */
     suspend fun articleTop(): ArrayDataBean?{
         return withContext(Dispatchers.Default){
             async {
@@ -35,6 +44,26 @@ class HomeRepository:NetRepository() {
                     arrayDataBean?.mLastTime = System.currentTimeMillis()
                 }
                 arrayDataBean
+            }
+        }.await()
+    }
+
+    /**
+     * 获取文章列表
+     */
+    suspend fun articleList(page:Int): ObjectDataBean.DataBean? {
+        return withContext(Dispatchers.Default){
+            async {
+                var dataBean:ObjectDataBean.DataBean? = null
+                if (NetworkUtils.isAvailable()){
+                    response(api.articleList(page)){
+                        dataBean = this.data
+                        dataBean?.mLastTime = System.currentTimeMillis()
+                    }
+                }else{
+                    netError()
+                }
+                dataBean
             }
         }.await()
     }

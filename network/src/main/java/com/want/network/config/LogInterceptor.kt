@@ -1,6 +1,7 @@
 package com.want.network.config
 
 import android.util.Log
+import com.want.common.CommonUtil
 import com.want.network.util.JsonUtil
 import okhttp3.*
 import okio.Buffer
@@ -242,7 +243,7 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
     }
 
     companion object {
-        private const val TAG = "<NetWork>"//默认的TAG
+        private const val TAG = CommonUtil.TAG+"<NetWork>"//默认的TAG
 
         //时间格式化
         const val MILLIS_PATTERN = "yyyy-MM-dd HH:mm:ss.SSSXXX"

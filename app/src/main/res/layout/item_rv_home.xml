@@ -77,7 +77,6 @@
                 android:text="@{item.MTime}"
                 android:textColor="@color/colorGray6"
                 android:textSize="@dimen/sp_12"
-                app:layout_constraintBottom_toBottomOf="@id/tag_linear"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tag_linear"
                 tools:text="时间" />
@@ -86,14 +85,14 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_14"
                 android:text="@{item.MTitle}"
                 android:textColor="@color/colorGray3"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/ivCollect"
-                app:layout_constraintTop_toBottomOf="@id/tag_linear"
+                app:layout_constraintTop_toBottomOf="@id/tvTime"
                 tools:text="测试" />
 
             <ImageView
@@ -108,6 +107,21 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvTitle"
                 tools:src="@drawable/collect_red" />
+
+            <ImageView
+                android:id="@+id/tvDel"
+                android:layout_marginStart="@dimen/dp_10"
+                android:visibility="@{item.mCollectIconShow ? View.INVISIBLE:View.VISIBLE}"
+                android:gravity="center_vertical"
+                android:onClick="@{()->item.onDelClick.invoke()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/shanchu_ico"
+                app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                app:layout_constraintLeft_toRightOf="@+id/tvTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitle"
+                tools:src="@mipmap/shanchu_ico" />
 
             <TextView
                 android:layout_width="wrap_content"

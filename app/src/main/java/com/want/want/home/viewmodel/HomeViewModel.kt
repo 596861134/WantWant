@@ -87,6 +87,7 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
                 dialogState(refresh,true)
                 getBannerImages(refresh)
                 getArticleTop(refresh)
+                getArticleList()
                 dialogState(refresh,false)
             }catch (e:Exception){
                 dialogState(refresh, isShow = false, success = false)
@@ -154,6 +155,15 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
         tempTags.add(ItemDatasBean.TagBean("置顶"))
         it.tags?.let { tag -> tempTags.addAll(tag) }
         it.tags = tempTags
+    }
+
+    private suspend fun getArticleList(){
+        mRepo.articleList(mCurrPage)?.apply {
+            mTotalPage = pageCount ?: 1
+            datas?.forEach {
+                bindData(it)
+            }
+        }
     }
 
     private fun bindData(bran: ItemDatasBean) {

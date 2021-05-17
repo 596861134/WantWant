@@ -115,7 +115,7 @@ fun fabCustomSize(fab: FloatingActionButton, dp: Int) {
 
 @BindingAdapter("webViewLoadUrl")
 fun webViewLoadUrl(webView: WebView, url: String?) {
-    "webViewLoadUrl url = $url".logWithTag("X5WebActivity")
+    "webViewLoadUrl url = $url".logWithTag(CommonUtil.TAG)
     if (url.isNullOrEmpty()) return
     webView.loadUrl(url)
 }
