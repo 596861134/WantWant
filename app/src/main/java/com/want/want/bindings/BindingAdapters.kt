@@ -1,4 +1,4 @@
-package com.want.want.databinding
+package com.want.want.bindings
 
 import android.view.View
 import androidx.databinding.BindingAdapter
@@ -65,6 +65,13 @@ fun setLoadMoreListener(recyclerView: RecyclerView, listener: (() -> Unit)?) {
 fun layoutHeight(view: View, dp:Int){
     val layoutParams = view.layoutParams
     layoutParams.height = dp
+    view.layoutParams = layoutParams
+}
+
+@BindingAdapter("layoutWidth")
+fun layoutWidth(view: View, dp: Int) {
+    val layoutParams = view.layoutParams
+    layoutParams.width = dp
     view.layoutParams = layoutParams
 }
 

@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import androidx.databinding.ObservableField
 import com.want.common.utils.getDrawable
 import com.want.common.utils.getResColor
+import com.want.common.utils.getResDimen
 import com.want.want.R
 
 /**
@@ -20,4 +21,11 @@ data class TitleViewModel(var leftText:String = "",
 ) {
     val mTitle = ObservableField(title)
     val mRightDrawable = ObservableField(rightDrawable)
+}
+
+data class FabViewModel(var size: Int = R.dimen.dp_50.getResDimen().toInt(),
+                  var drawable: Drawable? = R.mipmap.up_arrow_white.getDrawable(),
+                  var onClick: (() -> Unit)? = null,
+                  var background: Int = R.color.colorAccent.getResColor()) {
+    val mDrawable = ObservableField(drawable)
 }

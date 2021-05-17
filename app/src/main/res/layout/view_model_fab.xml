@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fab"
+            type="com.want.want.viewmodel.FabViewModel" />
+    </data>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@{fab.mDrawable}"
+        app:borderWidth="@dimen/dp_0"
+        app:fabCustomSize="@dimen/dp_50"
+        app:layoutHeight="@{fab.size}"
+        app:layoutWidth="@{fab.size}"
+        android:onClick="@{()->fab.onClick.invoke()}"
+        app:layout_anchorGravity="bottom|right|end" />
+
+
+    <!--
+
+
+app:fabCustomSize="@{fab.size}"
+
+    -->
+</layout>

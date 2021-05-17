@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.want.want.fragment.HomeFragment"
+        android:name="com.want.want.home.HomeFragment"
         android:label="@string/radio_home_text"
         tools:layout="@layout/home_fragment" />
     <fragment

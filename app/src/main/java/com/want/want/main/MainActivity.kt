@@ -1,7 +1,8 @@
-package com.want.want.activity
+package com.want.want.main
 
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.want.common.utils.isNotNull
@@ -10,20 +11,32 @@ import com.want.want.R
 import com.want.want.adapter.MainVMAdapter
 import com.want.want.databinding.ActivityMainBinding
 import com.want.want.fragment.*
-import com.want.want.viewmodel.CommonViewModel
+import com.want.want.home.HomeFragment
+import com.want.want.rv.RvScrollToTop
 
-class MainActivity : BaseViewModelActivity<CommonViewModel, ActivityMainBinding>(R.layout.activity_main, CommonViewModel::class.java) {
+class MainActivity : BaseViewModelActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main, MainViewModel::class.java) {
 
     private lateinit var viewPager:ViewPager2
     private var menu:MenuItem? = null
     private lateinit var bottomNavigation: BottomNavigationView
     private val mFragments = mutableListOf<Fragment>()
+    private var mPagePosition:Int = 0
 
     override fun onViewInit() {
         super.onViewInit()
         viewPager = mBinding.viewPager
         bottomNavigation = mBinding.bottomNavigationView
         initFragment()
+    }
+
+    override fun onEvent() {
+        super.onEvent()
+        mRealVM.mFabClick.observe(this, Observer {
+            if (it) {
+                (mFragments[mPagePosition] as? RvScrollToTop)?.scrollToTop()
+                mRealVM.mFabClick.value = false
+            }
+        })
     }
 
     private fun initFragment(){
@@ -69,6 +82,8 @@ class MainActivity : BaseViewModelActivity<CommonViewModel, ActivityMainBinding>
     }
 
     private fun setButtonState(position: Int) {
+        mRealVM.mFabVisible.set(false)
+        mPagePosition = position
         if (menu.isNotNull()){
             menu?.isChecked = false
         }else {

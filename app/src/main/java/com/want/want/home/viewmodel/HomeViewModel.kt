@@ -5,22 +5,20 @@ import androidx.lifecycle.viewModelScope
 import com.want.common.ItemType
 import com.want.common.rv.BaseMultiItemViewModel
 import com.want.common.rv.QuickMultiAdapter
-import com.want.common.utils.getResColor
 import com.want.common.utils.getResDimen
-import com.want.common.utils.logWithTag
 import com.want.common.utils.showToast
 import com.want.common.viewmodel.BaseRepositoryViewModel
-import com.want.network.util.TAG
 import com.want.network.util.loadSuccess
 import com.want.network.util.noMoreData
 import com.want.want.R
 import com.want.want.adapter.BannerAdapter
 import com.want.want.bean.BannerBean
 import com.want.want.bean.BannerViewModel
+import com.want.want.common.CollectChangeBean
 import com.want.want.home.HomeRepository
 import com.want.want.rv.RecyclerViewVM
 import com.want.want.viewmodel.TitleViewModel
-import com.youth.banner.transformer.*
+import com.youth.banner.transformer.DepthPageTransformer
 import kotlinx.coroutines.launch
 
 enum class HomePageState{
@@ -121,6 +119,11 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
         }
     }
 
+    fun updateCollectState(bean: CollectChangeBean) {
+        mData.filterIsInstance<ItemHomeVM>()
+            .find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+    }
+
     private suspend fun getBannerImages(refresh: HomePageState) {
         if (refresh == HomePageState.INIT || refresh == HomePageState.REFRESH){
             mBannerBeanList.clear()
@@ -130,7 +133,6 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
             mData.add(mHomeBannerVM)
         }
     }
-
 
 
 }

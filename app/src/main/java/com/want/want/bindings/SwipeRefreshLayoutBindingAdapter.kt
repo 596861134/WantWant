@@ -1,4 +1,4 @@
-package com.want.want.databinding
+package com.want.want.bindings
 
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
