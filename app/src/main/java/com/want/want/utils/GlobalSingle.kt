@@ -1,7 +1,7 @@
 package com.want.want.utils
 
 import androidx.lifecycle.MutableLiveData
-import com.want.want.common.CollectChangeBean
+import com.want.want.bean.CollectChangeBean
 import com.want.want.common.CollectContentPage
 import com.want.want.common.EditDialogEvent
 

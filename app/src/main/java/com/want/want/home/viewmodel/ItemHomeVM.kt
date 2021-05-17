@@ -6,8 +6,11 @@ import androidx.databinding.ObservableField
 import com.want.common.ItemType
 import com.want.common.rv.BaseMultiItemViewModel
 import com.want.common.utils.truely
+import com.want.want.activity.X5WebActivity
 import com.want.want.bean.ItemDatasBean
+import com.want.want.common.CommonItemBean
 import com.want.want.viewmodel.TagViewModel
+import com.want.want.viewmodel.X5WebViewModel
 
 /**
  * @author jhb
@@ -35,8 +38,10 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
 
     override fun onItemClick() {
 
-//        startActivity(X5WebActivity::class.java,
-//                X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, mCollect.get()))
+        startActivity(
+            X5WebActivity::class.java,
+                X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, mCollect.get())
+        )
 
     }
 

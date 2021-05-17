@@ -10,4 +10,15 @@ open class NetRepository: BaseRepository {
 
     val api by lazy { WantService.create<ApiService>() }
 
+    /**
+     * 收藏
+     */
+    suspend fun collect(id:Int) = api.collect(id)
+
+    /**
+     * 取消收藏
+     */
+    suspend fun unCollect(id:Int,isOnMe:Boolean = false, originId:Int = -1) =
+        if (isOnMe) api.unCollectInMe(id, originId) else api.unCollect(id)
+
 }

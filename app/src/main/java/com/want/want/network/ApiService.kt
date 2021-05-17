@@ -1,11 +1,10 @@
 package com.want.want.network
 
+import com.want.network.BaseBean
 import com.want.want.bean.ArrayDataBean
 import com.want.want.bean.BannerDataBean
 import com.want.want.bean.ObjectDataBean
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Created by chengzf on 2021/5/13.
@@ -37,4 +36,21 @@ interface ApiService {
     //自己收藏文章列表
     @GET("lg/collect/list/{page}/json")
     suspend fun lgCollectList(@Path("page") page: Int): ObjectDataBean
+
+    //收藏站内文章 文章id，拼接在链接中。
+    @POST("/lg/collect/{id}/json")
+    suspend fun collect(@Path("id") id: Int?): BaseBean
+
+    //取消收藏  文章列表 文章id，拼接在链接中。
+    @POST("lg/uncollect_originId/{id}/json")
+    suspend fun unCollect(@Path("id") id: Int?): BaseBean
+
+    /**
+     * 取消收藏
+     * 1.文章列表 id:拼接在链接上
+     * 2.我的收藏页面（该页面包含自己录入的内容）id:拼接在链接上  originId:列表页下发，无则为-1
+     */
+    @FormUrlEncoded
+    @POST("/lg/uncollect/{id}/json")
+    suspend fun unCollectInMe(@Path("id") id: Int, @Field("originId") originId: Int): BaseBean
 }

@@ -15,17 +15,10 @@
         android:scaleType="centerInside"
         android:src="@{fab.mDrawable}"
         app:borderWidth="@dimen/dp_0"
-        app:fabCustomSize="@dimen/dp_50"
+        app:fabCustomSize="@{fab.size}"
         app:layoutHeight="@{fab.size}"
         app:layoutWidth="@{fab.size}"
         android:onClick="@{()->fab.onClick.invoke()}"
         app:layout_anchorGravity="bottom|right|end" />
 
-
-    <!--
-
-
-app:fabCustomSize="@{fab.size}"
-
-    -->
 </layout>

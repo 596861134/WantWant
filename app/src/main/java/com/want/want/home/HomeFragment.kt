@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.Observer
 import com.want.common.view.BaseVMRepositoryFragment
 import com.want.want.R
+import com.want.want.bean.CollectChangeBean
 import com.want.want.main.MainActivity
-import com.want.want.common.CollectChangeBean
 import com.want.want.databinding.HomeFragmentBinding
 import com.want.want.home.viewmodel.HomeViewModel
 import com.want.want.rv.RvScrollToTop
@@ -17,6 +17,11 @@ class HomeFragment : BaseVMRepositoryFragment<HomeViewModel, HomeFragmentBinding
 
     override fun getViewModel(app: Application): HomeViewModel {
         return HomeViewModel(app)
+    }
+
+    override fun onViewInit() {
+        super.onViewInit()
+        bindScrollListener()
     }
 
     private val mObserver = Observer<CollectChangeBean> {

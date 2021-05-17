@@ -12,9 +12,7 @@ import com.want.network.util.loadSuccess
 import com.want.network.util.noMoreData
 import com.want.want.R
 import com.want.want.adapter.BannerAdapter
-import com.want.want.bean.BannerBean
-import com.want.want.bean.BannerViewModel
-import com.want.want.common.CollectChangeBean
+import com.want.want.bean.*
 import com.want.want.home.HomeRepository
 import com.want.want.rv.RecyclerViewVM
 import com.want.want.viewmodel.TitleViewModel
@@ -48,6 +46,7 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
     private var mData = arrayListOf<BaseMultiItemViewModel>()
     private val mAdapter = QuickMultiAdapter(mData).apply {
         addType(R.layout.item_rv_home_banner, ItemType.ITEM_HOME_BANNER)
+        addType(R.layout.item_rv_home,ItemType.ITEM_HOME_MAIN)
     }
 
     private var mCurrPage = 0
@@ -87,6 +86,7 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
                 resetDataIfNeed(refresh)
                 dialogState(refresh,true)
                 getBannerImages(refresh)
+                getArticleTop(refresh)
                 dialogState(refresh,false)
             }catch (e:Exception){
                 dialogState(refresh, isShow = false, success = false)
@@ -124,6 +124,9 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
             .find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
     }
 
+    /**
+     * 获取banner轮播图
+     */
     private suspend fun getBannerImages(refresh: HomePageState) {
         if (refresh == HomePageState.INIT || refresh == HomePageState.REFRESH){
             mBannerBeanList.clear()
@@ -134,5 +137,41 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
         }
     }
 
+    /**
+     * 获取置顶文章
+     */
+    private suspend fun getArticleTop(refresh: HomePageState){
+        if (refresh == HomePageState.INIT || refresh == HomePageState.REFRESH){
+            mRepo.articleTop()?.data?.forEach {
+                addTopTag(it)
+                bindData(it)
+            }
+        }
+    }
+
+    private fun addTopTag(it: ItemDatasBean) {
+        val tempTags = arrayListOf<ItemDatasBean.TagBean>()
+        tempTags.add(ItemDatasBean.TagBean("置顶"))
+        it.tags?.let { tag -> tempTags.addAll(tag) }
+        it.tags = tempTags
+    }
+
+    private fun bindData(bran: ItemDatasBean) {
+        mData.add(ItemHomeVM(getApplication(),bran).apply {
+            bindData()
+            onCollectClick = {
+                if (mCollect.get()){
+                    mId?.let {
+                        unCollectDelegate(it,mRepo)
+                    }
+                }else {
+                    mId?.let {
+                        //收藏
+                        collectDelegate(it,mRepo)
+                    }
+                }
+            }
+        })
+    }
 
 }

@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.tencent.smtt.sdk.WebView
+import com.want.common.CommonUtil
 import com.want.common.utils.isNull
+import com.want.common.utils.logWithTag
 import com.want.want.adapter.BannerAdapter
 import com.youth.banner.Banner
 import com.youth.banner.indicator.Indicator
@@ -104,6 +108,17 @@ fun setPageTransformer(banner: Banner<*, BannerAdapter>, transformer: ViewPager2
     banner.setPageTransformer(transformer)
 }
 
+@BindingAdapter("fabCustomSize")
+fun fabCustomSize(fab: FloatingActionButton, dp: Int) {
+    fab.customSize = dp
+}
+
+@BindingAdapter("webViewLoadUrl")
+fun webViewLoadUrl(webView: WebView, url: String?) {
+    "webViewLoadUrl url = $url".logWithTag("X5WebActivity")
+    if (url.isNullOrEmpty()) return
+    webView.loadUrl(url)
+}
 
 
 

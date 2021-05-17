@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="tag"
+            type="com.want.want.viewmodel.TagViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@{tag.MBgColor}"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_5"
+            android:textColor="@color/white"
+            android:textSize="@{tag.MTextSize}"
+            android:text="@{tag.MContent}"
+            tools:text="测试"
+            />
+
+
+    </androidx.cardview.widget.CardView>
+</layout>

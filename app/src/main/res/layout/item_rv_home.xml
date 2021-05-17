@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.want.want.home.viewmodel.ItemHomeVM" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_12"
+        android:onClick="@{()->item.onItemClick()}"
+        app:cardBackgroundColor="@color/colorBackground"
+        app:cardCornerRadius="@dimen/dp_5"
+        app:cardElevation="@dimen/dp_2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10">
+
+            <LinearLayout
+                android:id="@+id/tag_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    layout="@layout/view_model_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:visibility="@{(item.MTagVM1 == null) ? View.GONE : View.VISIBLE}"
+                    app:tag="@{item.MTagVM1}" />
+
+                <include
+                    layout="@layout/view_model_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:visibility="@{(item.MTagVM2 == null) ? View.GONE : View.VISIBLE}"
+                    app:tag="@{item.MTagVM2}" />
+
+                <include
+                    layout="@layout/view_model_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:visibility="@{(item.MTagVM3 == null) ? View.GONE : View.VISIBLE}"
+                    app:tag="@{item.MTagVM3}" />
+
+                <include
+                    layout="@layout/view_model_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{(item.MTagVM4 == null) ? View.GONE : View.VISIBLE}"
+                    app:tag="@{item.MTagVM4}" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.MTime}"
+                android:textColor="@color/colorGray6"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tag_linear"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tag_linear"
+                tools:text="时间" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="@{item.MTitle}"
+                android:textColor="@color/colorGray3"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ivCollect"
+                app:layout_constraintTop_toBottomOf="@id/tag_linear"
+                tools:text="测试" />
+
+            <ImageView
+                android:id="@+id/ivCollect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{()->item.onCollectClick.invoke()}"
+                android:src="@{item.MCollect ? @drawable/collect_red : @drawable/collect_gray }"
+                android:visibility="@{item.MCollectIconShow ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvTitle"
+                tools:src="@drawable/collect_red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
+                android:text="@{item.MAuthor}"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_12"
+                android:visibility="@{TextUtils.isEmpty(item.MAuthor) ? View.GONE:View.VISIBLE}"
+                app:layout_constraintLeft_toLeftOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="测试" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="@{item.MCategory}"
+                android:textColor="@color/colorGray6"
+                android:textSize="@dimen/sp_10"
+                android:visibility="@{TextUtils.isEmpty(item.MCategory)?View.INVISIBLE:View.VISIBLE}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="测试" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
