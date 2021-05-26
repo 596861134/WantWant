@@ -8,7 +8,10 @@ import com.want.common.utils.getResDimen
 import com.want.common.utils.logWithTag
 import com.want.common.viewmodel.BaseViewModel
 import com.want.want.R
+import com.want.want.activity.X5WebActivity
 import com.want.want.adapter.BannerAdapter
+import com.want.want.common.CommonItemBean
+import com.want.want.viewmodel.X5WebViewModel
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.indicator.Indicator
 import com.youth.banner.listener.OnBannerListener
@@ -32,6 +35,11 @@ class BannerViewModel(app:Application):BaseViewModel(app){
 
     val mBannerClickListener = OnBannerListener<BannerBean> {data, position ->
         "position = $position".logWithTag(CommonUtil.TAG)
+        startActivity(
+            X5WebActivity::class.java,
+            X5WebViewModel.FLAG_BEAN to CommonItemBean(-1, data.content, data.link, false),
+            X5WebViewModel.FLAG_SHOW_COLLECT_ICON to false
+        )
     }
 
     var mCurrentPage = 0
