@@ -102,6 +102,8 @@ class HomeViewModel(app:Application): BaseRepositoryViewModel<HomeRepository>(ap
     private fun resetDataIfNeed(state: HomePageState) {
         if (state == HomePageState.REFRESH) {
             mData.clear()
+            //避免list数据改变后不刷新adapter报错Inconsistency detected
+            mAdapter.notifyDataSetChanged()
         }
     }
 
