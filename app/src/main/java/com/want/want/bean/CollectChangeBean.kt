@@ -5,6 +5,7 @@ import com.want.common.viewmodel.BaseLayoutViewModel
 import com.want.network.NetConstant
 import com.want.network.util.collectSuccess
 import com.want.network.util.launch
+import com.want.want.activity.login.LoginActivity
 import com.want.want.network.NetRepository
 import com.want.want.utils.GlobalSingle
 
@@ -24,7 +25,7 @@ fun BaseLayoutViewModel.collectDelegate(id: Int,repo:NetRepository,success:(()->
             }
             NetConstant.UN_LOGIN -> {
                 bean.errorMsg?.showToast()
-                //TODO 跳转登陆页面
+                startActivity(LoginActivity::class.java)
             }
             else -> {
                 bean.errorMsg?.showToast()
@@ -44,7 +45,7 @@ fun BaseLayoutViewModel.unCollectDelegate(id: Int, repo: NetRepository, isOnMe: 
             }
             NetConstant.UN_LOGIN -> {
                 bean.errorMsg?.showToast()
-                //TODO 跳转登陆页面
+                startActivity(LoginActivity::class.java)
             }
             else -> {
                 bean.errorMsg?.showToast()

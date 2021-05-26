@@ -1,7 +1,7 @@
 package com.want.network.config
 
-import android.util.Log
 import com.want.common.CommonUtil
+import com.want.common.log.CLog
 import com.want.network.util.JsonUtil
 import okhttp3.*
 import okio.Buffer
@@ -214,11 +214,11 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
      */
     private fun logIt(any: Any, tempLevel: ColorLevel? = null) {
         when (tempLevel ?: colorLevel) {
-            ColorLevel.VERBOSE -> Log.v(logTag, any.toString())
-            ColorLevel.DEBUG -> Log.d(logTag, any.toString())
-            ColorLevel.INFO -> Log.i(logTag, any.toString())
-            ColorLevel.WARN -> Log.w(logTag, any.toString())
-            ColorLevel.ERROR -> Log.e(logTag, any.toString())
+            ColorLevel.VERBOSE -> CLog.v(logTag, any.toString())
+            ColorLevel.DEBUG -> CLog.d(logTag, any.toString())
+            ColorLevel.INFO -> CLog.i(logTag, any.toString())
+            ColorLevel.WARN -> CLog.w(logTag, any.toString())
+            ColorLevel.ERROR -> CLog.e(logTag, any.toString())
         }
     }
 

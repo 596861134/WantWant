@@ -12,6 +12,12 @@ import com.want.common.utils.logWithTag
  */
 class AppApplication : BaseApplication() {
 
+    companion object{
+        var isLogin = false
+        var userId:Int? = null
+        var nikeName:String? = null
+    }
+
     override fun onCreate() {
         super.onCreate()
         initSdk()

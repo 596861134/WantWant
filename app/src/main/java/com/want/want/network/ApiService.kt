@@ -4,6 +4,8 @@ import com.want.network.BaseBean
 import com.want.want.bean.ArrayDataBean
 import com.want.want.bean.BannerDataBean
 import com.want.want.bean.ObjectDataBean
+import com.want.want.bean.UserBean
+import retrofit2.Response
 import retrofit2.http.*
 
 /**
@@ -53,4 +55,16 @@ interface ApiService {
     @FormUrlEncoded
     @POST("/lg/uncollect/{id}/json")
     suspend fun unCollectInMe(@Path("id") id: Int, @Field("originId") originId: Int): BaseBean
+
+    /**
+     * 登录
+     */
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun userLogin(@Field("username") username: String?,
+                          @Field("password") password: String?): Response<UserBean>?
+
+
+
+
 }
