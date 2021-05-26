@@ -24,7 +24,7 @@ fun BaseLayoutViewModel.collectDelegate(id: Int,repo:NetRepository,success:(()->
             }
             NetConstant.UN_LOGIN -> {
                 bean.errorMsg?.showToast()
-                //跳转登陆页面
+                //TODO 跳转登陆页面
             }
             else -> {
                 bean.errorMsg?.showToast()
@@ -44,7 +44,7 @@ fun BaseLayoutViewModel.unCollectDelegate(id: Int, repo: NetRepository, isOnMe: 
             }
             NetConstant.UN_LOGIN -> {
                 bean.errorMsg?.showToast()
-                //跳转登陆页面
+                //TODO 跳转登陆页面
             }
             else -> {
                 bean.errorMsg?.showToast()

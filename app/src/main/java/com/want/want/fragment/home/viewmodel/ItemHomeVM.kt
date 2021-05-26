@@ -1,4 +1,4 @@
-package com.want.want.home.viewmodel
+package com.want.want.fragment.home.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableBoolean

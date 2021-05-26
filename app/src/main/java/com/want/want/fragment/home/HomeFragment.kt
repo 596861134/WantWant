@@ -1,4 +1,4 @@
-package com.want.want.home
+package com.want.want.fragment.home
 
 import android.app.Application
 import androidx.lifecycle.Observer
@@ -7,7 +7,7 @@ import com.want.want.R
 import com.want.want.bean.CollectChangeBean
 import com.want.want.main.MainActivity
 import com.want.want.databinding.HomeFragmentBinding
-import com.want.want.home.viewmodel.HomeViewModel
+import com.want.want.fragment.home.viewmodel.HomeViewModel
 import com.want.want.rv.RvScrollToTop
 import com.want.want.utils.GlobalSingle
 import com.want.want.utils.RvScrollDelegate

@@ -1,4 +1,4 @@
-package com.want.want.home.viewmodel
+package com.want.want.fragment.home.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
@@ -13,7 +13,7 @@ import com.want.network.util.noMoreData
 import com.want.want.R
 import com.want.want.adapter.BannerAdapter
 import com.want.want.bean.*
-import com.want.want.home.HomeRepository
+import com.want.want.fragment.home.HomeRepository
 import com.want.want.rv.RecyclerViewVM
 import com.want.want.viewmodel.TitleViewModel
 import com.youth.banner.transformer.DepthPageTransformer

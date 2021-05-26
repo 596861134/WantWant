@@ -1,4 +1,4 @@
-package com.want.want.home
+package com.want.want.fragment.home
 
 import com.blankj.utilcode.util.NetworkUtils
 import com.want.network.util.netError

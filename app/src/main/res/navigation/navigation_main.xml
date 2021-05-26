@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.want.want.home.HomeFragment"
+        android:name="com.want.want.fragment.home.HomeFragment"
         android:label="@string/radio_home_text"
         tools:layout="@layout/home_fragment" />
     <fragment
         android:id="@+id/questionsFragment"
-        android:name="com.want.want.fragment.QuestionsFragment"
+        android:name="com.want.want.fragment.question.QuestionsFragment"
         android:label="@string/radio_qa_text"
         tools:layout="@layout/questions_fragment" />
     <fragment

@@ -11,7 +11,8 @@ import com.want.want.R
 import com.want.want.adapter.MainVMAdapter
 import com.want.want.databinding.ActivityMainBinding
 import com.want.want.fragment.*
-import com.want.want.home.HomeFragment
+import com.want.want.fragment.home.HomeFragment
+import com.want.want.fragment.question.QuestionsFragment
 import com.want.want.rv.RvScrollToTop
 
 class MainActivity : BaseViewModelActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main, MainViewModel::class.java) {

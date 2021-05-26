@@ -6,7 +6,7 @@
     <data>
         <variable
             name="layout"
-            type="com.want.want.home.viewmodel.HomeViewModel" />
+            type="com.want.want.fragment.home.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

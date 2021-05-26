@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.want.want.home.viewmodel.ItemHomeVM" />
+            type="com.want.want.fragment.home.viewmodel.ItemHomeVM" />
 
         <import type="android.view.View" />
 

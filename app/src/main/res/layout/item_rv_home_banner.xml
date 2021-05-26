@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.want.want.home.viewmodel.HomeBannerVM" />
+            type="com.want.want.fragment.home.viewmodel.HomeBannerVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
