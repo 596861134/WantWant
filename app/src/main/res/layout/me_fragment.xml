@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.MeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+        <variable
+            name="layout"
+            type="com.want.want.fragment.me.viewmodel.MeViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/radio_me_text" />
+        android:background="@color/colorWhiteLight"
+        tools:context=".fragment.me.MeFragment">
 
-</FrameLayout>
+        <include
+            layout="@layout/view_common_recycleview"
+            app:rv="@{layout.rvVM}" />
+
+    </FrameLayout>
+</layout>

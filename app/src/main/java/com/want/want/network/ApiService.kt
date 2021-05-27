@@ -1,10 +1,7 @@
 package com.want.want.network
 
 import com.want.network.BaseBean
-import com.want.want.bean.ArrayDataBean
-import com.want.want.bean.BannerDataBean
-import com.want.want.bean.ObjectDataBean
-import com.want.want.bean.UserBean
+import com.want.want.bean.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -75,5 +72,9 @@ interface ApiService {
         @Field("password") password: String?,
         @Field("repassword") repassword: String?
     ): Response<UserBean>?
+
+    //获取个人积分，需要登录后访问
+    @GET("lg/coin/userinfo/json")
+    suspend fun coinUserInfo(): CoinUserInfoBean
 
 }

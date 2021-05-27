@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.want.want.fragment.me.viewmodel.MeItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:onClick="@{()->item.onClick.invoke()}">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp_20"
+            android:src="@{item.MIcon}"
+            app:layout_constraintBottom_toBottomOf="@id/tvContent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvContent"
+            tools:src="@mipmap/jifen_ico" />
+
+        <ImageView
+            android:id="@+id/ivNext"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:scaleType="centerInside"
+            android:src="@mipmap/next_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/tvContent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvContent" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            android:text="@{item.MContent}"
+            android:textColor="@color/colorGray3"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toTopOf="@id/viewMargin"
+            app:layout_constraintLeft_toRightOf="@id/ivIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            android:text="@{item.MCoinCount}"
+            android:textColor="@color/colorBlue"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toTopOf="@id/viewMargin"
+            app:layout_constraintRight_toLeftOf="@id/ivNext"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/app_name" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@color/colorWhiteLight"
+            android:visibility="@{item.MShowDivider? View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivIcon" />
+
+        <View
+            android:id="@+id/viewMargin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/colorWhiteLight"
+            android:visibility="@{item.MShowMargin? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvContent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

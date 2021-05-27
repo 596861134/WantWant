@@ -1,11 +1,14 @@
 package com.want.want.bindings
 
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tencent.smtt.sdk.WebView
 import com.want.common.CommonUtil
@@ -120,6 +123,16 @@ fun webViewLoadUrl(webView: WebView, url: String?) {
     webView.loadUrl(url)
 }
 
+@BindingAdapter("setAvatar")
+fun setAvatar(image:ImageView,path:String?){
+    path?.let {
+        Glide.with(image)
+            .applyDefaultRequestOptions(RequestOptions().circleCrop())
+            .load(it)
+            .into(image)
+    }
 
+
+}
 
 

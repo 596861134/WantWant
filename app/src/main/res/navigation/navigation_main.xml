@@ -27,7 +27,7 @@
         tools:layout="@layout/find_fragment" />
     <fragment
         android:id="@+id/meFragment"
-        android:name="com.want.want.fragment.MeFragment"
+        android:name="com.want.want.fragment.me.MeFragment"
         android:label="@string/radio_me_text"
         tools:layout="@layout/me_fragment" />
 </navigation>
