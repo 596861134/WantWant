@@ -51,7 +51,7 @@ object MMKVUtil{
         }
     }
 
-    fun encodeSet(key: String?, sets: Set<String?>?) {
+    fun encodeSet(key: String?, sets: Set<String>?) {
         mmkv.encode(key, sets)
     }
 
@@ -90,7 +90,7 @@ object MMKVUtil{
         return mmkv.decodeString(key, "").toString()
     }
 
-    fun decodeStringSet(key: String): MutableSet<String?>? {
+    fun decodeStringSet(key: String): MutableSet<String>? {
         return mmkv.decodeStringSet(key, HashSet<String>())
     }
 

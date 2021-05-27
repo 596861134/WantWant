@@ -9,6 +9,7 @@ import com.want.network.util.launch
 import com.want.want.AppApplication
 import com.want.want.R
 import com.want.want.activity.login.LoginRepository
+import com.want.want.activity.login.RegisterActivity
 import com.want.want.common.CollectContentPage
 import com.want.want.utils.GlobalSingle
 import com.want.want.viewmodel.TitleViewModel
@@ -65,7 +66,7 @@ class LoginViewModel(app:Application):BaseRepositoryViewModel<LoginRepository>(a
     }
 
     fun onRegister(){
-
+        startActivity(RegisterActivity::class.java)
     }
 
 }

@@ -29,7 +29,7 @@ class LoginRepository: NetRepository() {
                             cookieSet.add(head.second)
                         }
                     }
-                    MMKVUtil.encode(Constant.KEY_COOKIE,cookieSet)
+                    MMKVUtil.encodeSet(Constant.KEY_COOKIE,cookieSet)
 
                     val data = body.data
                     MMKVUtil.encode(Constant.USER_NIKE_NAME, data?.nickname ?: data?.publicName ?: data?.username ?: "")

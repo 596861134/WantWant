@@ -65,6 +65,15 @@ interface ApiService {
                           @Field("password") password: String?): Response<UserBean>?
 
 
-
+    /**
+     * 注册 username password repassword
+     */
+    @FormUrlEncoded
+    @POST("/user/register")
+    suspend fun userRegister(
+        @Field("username") username: String?,
+        @Field("password") password: String?,
+        @Field("repassword") repassword: String?
+    ): Response<UserBean>?
 
 }
