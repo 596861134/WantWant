@@ -5,7 +5,7 @@ import com.want.common.utils.falsely
 import com.want.common.utils.log
 import com.want.common.utils.logWithTag
 import com.want.common.utils.truely
-import com.want.want.main.MainActivity
+import com.want.want.activity.main.MainActivity
 import com.want.want.rv.RecyclerViewVM
 import com.want.want.rv.RvScrollListener
 

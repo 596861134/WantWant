@@ -10,6 +10,8 @@ import com.want.common.viewmodel.BaseRepositoryViewModel
 import com.want.network.util.launch
 import com.want.want.AppApplication
 import com.want.want.R
+import com.want.want.activity.coin.CoinRankActivity
+import com.want.want.activity.coin.viewmodel.CoinRankViewModel
 import com.want.want.bean.CoinUserInfoBean
 import com.want.want.common.CollectContentPage
 import com.want.want.common.EditDialogEvent
@@ -36,7 +38,7 @@ class MeViewModel(app:Application) : BaseRepositoryViewModel<MeRepository>(app, 
         mContent.set("我的积分")
         mIcon.set(R.mipmap.jifen_ico.getResDrawable())
         onClick={
-            //todo 跳转积分页
+            startActivity(CoinRankActivity::class.java,CoinRankViewModel.COIN_USER_INFO_BEAN to mCoinUserInfoBean)
         }
         mShowDivider.set(false)
         mShowMargin.set(true)

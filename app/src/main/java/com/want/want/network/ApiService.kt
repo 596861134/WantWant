@@ -77,4 +77,8 @@ interface ApiService {
     @GET("lg/coin/userinfo/json")
     suspend fun coinUserInfo(): CoinUserInfoBean
 
+    //积分排行榜接口
+    @GET("/coin/rank/{page}/json")
+    suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
+
 }

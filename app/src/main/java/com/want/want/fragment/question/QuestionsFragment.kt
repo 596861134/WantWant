@@ -6,7 +6,7 @@ import com.want.common.view.BaseVMRepositoryFragment
 import com.want.want.R
 import com.want.want.bean.CollectChangeBean
 import com.want.want.databinding.QuestionsFragmentBinding
-import com.want.want.main.MainActivity
+import com.want.want.activity.main.MainActivity
 import com.want.want.rv.RvScrollToTop
 import com.want.want.utils.GlobalSingle
 import com.want.want.utils.RvScrollDelegate

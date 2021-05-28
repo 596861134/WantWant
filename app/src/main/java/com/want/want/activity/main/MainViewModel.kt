@@ -1,4 +1,4 @@
-package com.want.want.main
+package com.want.want.activity.main
 
 import android.app.Application
 import androidx.databinding.ObservableField

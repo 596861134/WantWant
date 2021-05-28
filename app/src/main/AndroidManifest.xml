@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.login.RegisterActivity"></activity>
+        <activity android:name=".activity.coin.CoinRankActivity"></activity>
+        <activity android:name=".activity.login.RegisterActivity" />
         <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.X5WebActivity" />
         <activity android:name=".activity.SplashActivity">
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name=".activity.main.MainActivity"
             android:launchMode="singleTask" />
     </application>
 
