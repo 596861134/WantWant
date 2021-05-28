@@ -33,6 +33,8 @@ class LoginRepository: NetRepository() {
 
                     val data = body.data
                     MMKVUtil.encode(Constant.USER_NIKE_NAME, data?.nickname ?: data?.publicName ?: data?.username ?: "")
+                    MMKVUtil.encode(Constant.IS_LOGIN,true)
+                    MMKVUtil.encode(Constant.USER_ID,data?.id)
                     AppApplication.nikeName = data?.nickname
                     data?.mIsLogin = true
                     data?.mLoginTime = System.currentTimeMillis()

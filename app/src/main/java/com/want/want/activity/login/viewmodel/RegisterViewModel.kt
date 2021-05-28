@@ -80,7 +80,9 @@ class RegisterViewModel(app:Application):BaseLayoutViewModel(app) {
 
                         MMKVUtil.encodeSet(Constant.KEY_COOKIE,cookieSet)
                         MMKVUtil.encode(Constant.USER_NIKE_NAME, body.data?.nickname ?: body.data?.publicName ?: body.data?.username ?: "")
-                        AppApplication.isLogin = true
+                        MMKVUtil.encode(Constant.IS_LOGIN,true)
+                        MMKVUtil.encode(Constant.USER_ID,body.data?.id)
+//                        AppApplication.isLogin = true
                         GlobalSingle.isLoginSuccess.value = true
                         mPage?.let {
                             GlobalSingle.isLoginSuccessToCollect.value = it

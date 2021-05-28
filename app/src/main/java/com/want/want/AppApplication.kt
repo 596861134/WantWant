@@ -4,6 +4,8 @@ import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
 import com.want.common.BaseApplication
 import com.want.common.CommonUtil
+import com.want.common.Constant
+import com.want.common.utils.MMKVUtil
 import com.want.common.utils.logWithTag
 
 
@@ -21,6 +23,13 @@ class AppApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         initSdk()
+        initUserInfo()
+    }
+
+    private fun initUserInfo() {
+        isLogin = MMKVUtil.decodeBoolean(Constant.IS_LOGIN)
+        userId = MMKVUtil.decodeInt(Constant.USER_ID)
+        nikeName = MMKVUtil.decodeString(Constant.USER_NIKE_NAME)
     }
 
     private fun initSdk() {

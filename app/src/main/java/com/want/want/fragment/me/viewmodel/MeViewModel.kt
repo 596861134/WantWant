@@ -128,7 +128,7 @@ class MeViewModel(app:Application) : BaseRepositoryViewModel<MeRepository>(app, 
         coinUserInfo()
     }
 
-    private fun coinUserInfo() {
+    fun coinUserInfo() {
         launch {
             mRepo.coinUserInfo()?.apply {
                 mCoinUserInfoBean = this
@@ -143,7 +143,7 @@ class MeViewModel(app:Application) : BaseRepositoryViewModel<MeRepository>(app, 
         }
     }
 
-    private fun resetLoginState() {
+    fun resetLoginState() {
         if (mData.isEmpty())return
         (mData[0] as? MeHeaderViewModel)?.apply {
             mPath.set(UN_LOGIN_PATH)

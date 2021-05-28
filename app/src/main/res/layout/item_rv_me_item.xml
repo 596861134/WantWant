@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.want.want.fragment.me.viewmodel.MeItemViewModel" />
@@ -51,19 +52,22 @@
             android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toTopOf="@id/viewMargin"
             app:layout_constraintLeft_toRightOf="@id/ivIcon"
+            app:layout_constraintRight_toLeftOf="@id/tvTag"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/app_name" />
 
         <TextView
+            android:id="@+id/tvTag"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|end"
             android:paddingStart="@dimen/dp_10"
             android:paddingEnd="@dimen/dp_10"
             android:text="@{item.MCoinCount}"
             android:textColor="@color/colorBlue"
             android:textSize="@dimen/sp_12"
             app:layout_constraintBottom_toTopOf="@id/viewMargin"
+            app:layout_constraintLeft_toRightOf="@id/tvContent"
             app:layout_constraintRight_toLeftOf="@id/ivNext"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/app_name" />

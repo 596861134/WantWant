@@ -55,7 +55,7 @@ class LoginViewModel(app:Application):BaseRepositoryViewModel<LoginRepository>(a
 
         launch {
             if (mRepo.login(mUserName.get(),mPassword.get())){
-                AppApplication.isLogin = true
+//                AppApplication.isLogin = true
                 GlobalSingle.isLoginSuccess.value = true
                 mPage?.let {
                     GlobalSingle.isLoginSuccessToCollect.value = it

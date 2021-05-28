@@ -126,6 +126,7 @@ fun webViewLoadUrl(webView: WebView, url: String?) {
 @BindingAdapter("setAvatar")
 fun setAvatar(image:ImageView,path:String?){
     path?.let {
+        "path:${path}".logWithTag(CommonUtil.TAG)
         Glide.with(image)
             .applyDefaultRequestOptions(RequestOptions().circleCrop())
             .load(it)
