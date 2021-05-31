@@ -8,7 +8,7 @@ import com.want.network.WantService
  */
 open class NetRepository: BaseRepository {
 
-    val api by lazy { WantService.create<ApiService>() }
+    val api= NetService.api
 
     /**
      * 收藏

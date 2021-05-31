@@ -13,22 +13,21 @@ import com.want.common.viewmodel.BaseLayoutViewModel
 /**
  * Created by chengzf on 2021/5/13.
  */
-open class BaseDialog<T: BaseLayoutViewModel>(
-    private val layoutId:Int, val vm:Class<T>,
-    private val activity:AppCompatActivity, theme: Int)
+open class BaseDialog<VM: BaseLayoutViewModel, T:ViewDataBinding>(
+    private val layoutId:Int, val vm:Class<VM>, private val activity:AppCompatActivity, theme: Int)
     :AppCompatDialog(activity,theme) {
 
-    lateinit var mRealVM:T
+    lateinit var mRealVM:VM
+    lateinit var mBinding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mRealVM = ViewModelProvider(activity,ViewModelProvider.AndroidViewModelFactory(activity.application))[vm]
 
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(
-            LayoutInflater.from(activity), layoutId, null, false)
-        setContentView(binding.root)
-        binding.setVariable(mRealVM.id(),mRealVM)
-        binding.executePendingBindings()
+        mBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), layoutId, null, false)
+        setContentView(mBinding.root)
+        mBinding.setVariable(mRealVM.id(),mRealVM)
+        mBinding.executePendingBindings()
 
         setCancelable(false)
         setCanceledOnTouchOutside(true)

@@ -12,7 +12,7 @@ import com.want.network.util.launch
 import com.want.want.AppApplication
 import com.want.want.R
 import com.want.want.common.CollectContentPage
-import com.want.want.network.NetRepository
+import com.want.want.network.NetService
 import com.want.want.utils.GlobalSingle
 import com.want.want.viewmodel.TitleViewModel
 
@@ -67,7 +67,7 @@ class RegisterViewModel(app:Application):BaseLayoutViewModel(app) {
         }
 
         launch {
-            NetRepository().api.userRegister(mUserName.get(),mPassword.get(),mRePassword.get())?.apply {
+            NetService.api.userRegister(mUserName.get(),mPassword.get(),mRePassword.get())?.apply {
                 val body = body()
                 when(body?.errorCode){
                     NetConstant.SUCCESS -> {
@@ -82,7 +82,9 @@ class RegisterViewModel(app:Application):BaseLayoutViewModel(app) {
                         MMKVUtil.encode(Constant.USER_NIKE_NAME, body.data?.nickname ?: body.data?.publicName ?: body.data?.username ?: "")
                         MMKVUtil.encode(Constant.IS_LOGIN,true)
                         MMKVUtil.encode(Constant.USER_ID,body.data?.id)
-//                        AppApplication.isLogin = true
+                        AppApplication.isLogin = true
+                        AppApplication.userId = body.data?.id
+                        AppApplication.nikeName = body.data?.nickname
                         GlobalSingle.isLoginSuccess.value = true
                         mPage?.let {
                             GlobalSingle.isLoginSuccessToCollect.value = it

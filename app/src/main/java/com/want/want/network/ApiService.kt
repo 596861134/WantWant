@@ -61,7 +61,6 @@ interface ApiService {
     suspend fun userLogin(@Field("username") username: String?,
                           @Field("password") password: String?): Response<UserBean>?
 
-
     /**
      * 注册 username password repassword
      */
@@ -80,5 +79,38 @@ interface ApiService {
     //积分排行榜接口
     @GET("/coin/rank/{page}/json")
     suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
+
+    //收藏站外文章 title，author，link
+    @FormUrlEncoded
+    @POST("/lg/collect/add/json")
+    suspend fun collectAdd(
+        @Field("title") title: String?,
+        @Field("author") author: String?,
+        @Field("link") link: String?
+    ): BaseBean
+
+    //收藏网址  name,link
+    @FormUrlEncoded
+    @POST("lg/collect/addtool/json")
+    suspend fun addCollectWebsite(
+        @Field("name") name: String?,
+        @Field("link") link: String?
+    ): BaseBean
+
+    //编辑收藏网站  id,name,link  lg/collect/addtool/json
+    @FormUrlEncoded
+    @POST("/lg/collect/updatetool/json")
+    suspend fun updateCollectWebsite(
+        @Field("id") id: Int?,
+        @Field("name") name: String?,
+        @Field("link") link: String?
+    ): BaseBean
+
+    //分享文章
+    @FormUrlEncoded
+    @POST("/lg/user_article/add/json")
+    suspend fun addMyArticle(@Field("title") title: String?,
+                             @Field("link") link: String?
+    ): BaseBean
 
 }

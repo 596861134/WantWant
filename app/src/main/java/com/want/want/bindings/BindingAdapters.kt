@@ -1,6 +1,7 @@
 package com.want.want.bindings
 
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -132,8 +133,10 @@ fun setAvatar(image:ImageView,path:String?){
             .load(it)
             .into(image)
     }
-
-
 }
 
+@BindingAdapter("etSetSelect")
+fun etSetSelect(editText: EditText,position:Int){
+    editText.setSelection(position)
+}
 

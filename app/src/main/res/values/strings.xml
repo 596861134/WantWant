@@ -11,5 +11,6 @@
     <string name="text_login">登录</string>
     <string name="text_register">注册</string>
     <string name="text_re_pwd">确认密码</string>
+    <string name="text_confirm">确定</string>
 
 </resources>
