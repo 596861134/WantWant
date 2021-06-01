@@ -10,6 +10,7 @@ import com.want.common.viewmodel.BaseRepositoryViewModel
 import com.want.network.util.launch
 import com.want.want.AppApplication
 import com.want.want.R
+import com.want.want.activity.about.AboutMeActivity
 import com.want.want.activity.coin.CoinRankActivity
 import com.want.want.activity.coin.viewmodel.CoinRankViewModel
 import com.want.want.bean.CoinUserInfoBean
@@ -102,7 +103,7 @@ class MeViewModel(app:Application) : BaseRepositoryViewModel<MeRepository>(app, 
             mContent.set("关于我")
             mIcon.set(R.mipmap.xiaolianchenggong_ico.getResDrawable())
             onClick={
-                //TODO 跳转关于我的页面
+                startActivity(AboutMeActivity::class.java)
              }
             mShowDivider.set(false)
             mShowMargin.set(true)
