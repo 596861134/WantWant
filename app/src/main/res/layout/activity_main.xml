@@ -15,11 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--BottomNavigationView的通用修改记录 https://www.jianshu.com/p/4d1a01479f52 -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            app:itemIconSize="@dimen/dp_16"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -17,7 +17,7 @@
         tools:layout="@layout/questions_fragment" />
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="com.want.want.fragment.CollectionFragment"
+        android:name="com.want.want.fragment.collect.CollectionFragment"
         android:label="@string/radio_collection_text"
         tools:layout="@layout/collection_fragment" />
     <fragment
