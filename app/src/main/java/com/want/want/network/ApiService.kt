@@ -72,6 +72,10 @@ interface ApiService {
         @Field("repassword") repassword: String?
     ): Response<UserBean>?
 
+    //退出
+    @GET("/user/logout/json")
+    suspend fun userLogout(): BaseBean
+
     //获取个人积分，需要登录后访问
     @GET("lg/coin/userinfo/json")
     suspend fun coinUserInfo(): CoinUserInfoBean

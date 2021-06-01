@@ -13,6 +13,7 @@ import com.want.want.R
 import com.want.want.activity.about.AboutMeActivity
 import com.want.want.activity.coin.CoinRankActivity
 import com.want.want.activity.coin.viewmodel.CoinRankViewModel
+import com.want.want.activity.setting.SettingActivity
 import com.want.want.bean.CoinUserInfoBean
 import com.want.want.common.CollectContentPage
 import com.want.want.common.EditDialogEvent
@@ -113,7 +114,7 @@ class MeViewModel(app:Application) : BaseRepositoryViewModel<MeRepository>(app, 
             mContent.set("设置")
             mIcon.set(R.mipmap.shezhi_ico.getResDrawable())
             onClick={
-                //TODO 跳转设置页面
+                startActivity(SettingActivity::class.java)
              }
             mShowDivider.set(false)
         })
