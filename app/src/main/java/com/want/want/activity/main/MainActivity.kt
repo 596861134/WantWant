@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.want.common.utils.isNotNull
 import com.want.common.view.BaseViewModelActivity
 import com.want.want.R
-import com.want.want.adapter.MainVMAdapter
+import com.want.want.adapter.FragmentAdapter
 import com.want.want.databinding.ActivityMainBinding
 import com.want.want.fragment.*
 import com.want.want.fragment.collect.CollectionFragment
@@ -52,7 +52,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel, ActivityMainBinding>(R
         mFragments.add(FindFragment())
         mFragments.add(MeFragment())
 
-        viewPager.adapter = MainVMAdapter(mFragments, supportFragmentManager, lifecycle)
+        viewPager.adapter = FragmentAdapter(mFragments, supportFragmentManager, lifecycle)
         viewPager.isUserInputEnabled = false
 
         bottomNavigation.setOnNavigationItemSelectedListener { item ->

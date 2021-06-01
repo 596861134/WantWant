@@ -7,8 +7,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 /**
  * Created by chengzf on 2021/5/13.
+ * fragment+viewpager 适配器
  */
-class MainVMAdapter(private var mData:MutableList<Fragment>, fragmentManager: FragmentManager, lifecycle: Lifecycle)
+class FragmentAdapter(private val mData:List<Fragment>, fragmentManager: FragmentManager, lifecycle: Lifecycle)
     :FragmentStateAdapter(fragmentManager,lifecycle) {
 
     override fun getItemCount(): Int = mData.size
