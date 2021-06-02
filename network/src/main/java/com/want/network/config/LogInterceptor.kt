@@ -9,6 +9,7 @@ import okio.BufferedSource
 import java.net.URLDecoder
 import java.nio.charset.Charset
 import java.text.SimpleDateFormat
+import java.lang.StringBuilder
 import java.util.*
 
 class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
@@ -51,10 +52,7 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
         return kotlin.runCatching { chain.proceed(request) }
             .onFailure {
                 it.printStackTrace()
-                logIt(
-                    it.message.toString(),
-                    ColorLevel.ERROR
-                )
+                logIt(it.message.toString(), ColorLevel.ERROR)
             }.onSuccess { response ->
                 if (logLevel == LogLevel.NONE) {
                     return response
@@ -71,8 +69,8 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
      */
     private fun logRequest(request: Request, connection: Connection?) {
         val sb = StringBuilder()
-        sb.appendln("\r\n")
-        sb.appendln("->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->")
+        sb.appendLine("\r\n")
+        sb.appendLine("->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->")
         when (logLevel) {
             LogLevel.NONE -> {
                 /*do nothing*/
@@ -87,43 +85,31 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
                 logBodyReq(sb, request, connection)
             }
         }
-        sb.appendln("->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->")
-        logIt(sb)
+        sb.appendLine("->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->")
+        splitLog(sb,ColorLevel.DEBUG)
     }
 
     //region log  request
 
-    private fun logBodyReq(
-        sb: StringBuilder,
-        request: Request,
-        connection: Connection?
-    ) {
+    private fun logBodyReq(sb: StringBuilder, request: Request, connection: Connection?) {
         logHeadersReq(sb, request, connection)
         //读取出request Body的内容
         val req = request.newBuilder().build()
         val sink = Buffer()
         req.body?.writeTo(sink)
-        sb.appendln("RequestBody: ${sink.readUtf8()}")
+        sb.appendLine("RequestBody: ${sink.readUtf8()}")
     }
 
-    private fun logHeadersReq(
-        sb: StringBuilder,
-        request: Request,
-        connection: Connection?
-    ) {
+    private fun logHeadersReq(sb: StringBuilder, request: Request, connection: Connection?) {
         logBasicReq(sb, request, connection)
         val headersStr = request.headers.joinToString("") { header ->
             "请求 Header: {${header.first}=${header.second}}\n"
         }
-        sb.appendln(headersStr)
+        sb.appendLine(headersStr)
     }
 
-    private fun logBasicReq(
-        sb: StringBuilder,
-        request: Request,
-        connection: Connection?
-    ) {
-        sb.appendln("请求 method: ${request.method} url: ${decodeUrlStr(request.url.toString())} tag: ${request.tag()} protocol: ${connection?.protocol() ?: Protocol.HTTP_1_1}")
+    private fun logBasicReq(sb: StringBuilder, request: Request, connection: Connection?) {
+        sb.appendLine("请求 method: ${request.method} url: ${decodeUrlStr(request.url.toString())} tag: ${request.tag()} protocol: ${connection?.protocol() ?: Protocol.HTTP_1_1}")
     }
 
     //endregion
@@ -133,9 +119,9 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
      * [response] 响应数据
      */
     private fun logResponse(response: Response) {
-        val sb = StringBuffer()
-        sb.appendln("\r\n")
-        sb.appendln("<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<")
+        val sb = StringBuilder()
+        sb.appendLine("\r\n")
+        sb.appendLine("<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<")
         when (logLevel) {
             LogLevel.NONE -> {
                 /*do nothing*/
@@ -160,40 +146,30 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
                     val buffer:Buffer? = source?.buffer
                     val UTF8:Charset = Charset.forName("UTF-8")
                     val readString = buffer?.clone()?.readString(UTF8)
-                    sb.appendln("响应 Body: "+ readString?.let { JsonUtil.formatJson(JsonUtil.decodeUnicode(it)) })
+                    sb.appendLine("响应 Body: "+ readString?.let { JsonUtil.formatJson(JsonUtil.decodeUnicode(it)) })
                 }.getOrNull()
             }
         }
-        sb.appendln("<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<")
+        sb.appendLine("<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<-<<")
         splitLog(sb, ColorLevel.INFO)
     }
 
 
     //region log response
 
-    private fun logHeadersRsp(response: Response, sb: StringBuffer) {
+    private fun logHeadersRsp(response: Response, sb: StringBuilder) {
         logBasicRsp(sb, response)
         val headersStr = response.headers.joinToString(separator = "") { header ->
             "响应 Header: {${header.first}=${header.second}}\n"
         }
-        sb.appendln(headersStr)
+        sb.appendLine(headersStr)
     }
 
-    private fun logBasicRsp(sb: StringBuffer, response: Response) {
-        sb.appendln("响应 protocol: ${response.protocol} code: ${response.code} message: ${response.message}")
-            .appendln("响应 request Url: ${decodeUrlStr(response.request.url.toString())}")
-            .appendln("响应 sentRequestTime: ${
-                toDateTimeStr(
-                    response.sentRequestAtMillis,
-                    MILLIS_PATTERN
-                )
-            }")
-            .appendln("响应 receivedResponseTime: ${
-                toDateTimeStr(
-                    response.receivedResponseAtMillis,
-                    MILLIS_PATTERN
-                )
-            }")
+    private fun logBasicRsp(sb: StringBuilder, response: Response) {
+        sb.appendLine("响应 protocol: ${response.protocol} code: ${response.code} message: ${response.message}")
+            .appendLine("响应 request Url: ${decodeUrlStr(response.request.url.toString())}")
+            .appendLine("响应 sentRequestTime: ${toDateTimeStr(response.sentRequestAtMillis, MILLIS_PATTERN)}")
+            .appendLine("响应 receivedResponseTime: ${toDateTimeStr(response.receivedResponseAtMillis, MILLIS_PATTERN)}")
     }
 
     //endregion
@@ -204,7 +180,9 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
     private fun decodeUrlStr(url: String): String? {
         return kotlin.runCatching {
             URLDecoder.decode(url, "utf-8")
-        }.onFailure { it.printStackTrace() }.getOrNull()
+        }.onFailure {
+            it.printStackTrace()
+        }.getOrNull()
     }
 
     /**
@@ -225,20 +203,28 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
     /**
      * 截取Log输出
      */
-    private fun splitLog(sb: StringBuffer?, tempLevel: ColorLevel? = null) {
+    private fun splitLog(sb: StringBuilder?, tempLevel: ColorLevel? = null) {
         var msg:String? = sb.toString()
-        if (msg == null || msg.isEmpty()) return
-        val segmentSize = 3 * 1024
-        val length = msg.length.toLong()
+        if (msg == null || msg.isEmpty()) {
+            return
+        }
+        val segmentSize:Int = 3 * 1024
+        val length:Long = msg.length.toLong()
         if (length <= segmentSize) { // 长度小于等于限制直接打印
             logIt(msg, tempLevel)
         } else {
+            var count = 0
             while (msg!!.length > segmentSize) { // 循环分段打印日志
                 val logContent = msg.substring(0, segmentSize)
                 msg = msg.replace(logContent, "")
-                logIt(logContent, tempLevel)
+                if (count==0){
+                    logIt(logContent, tempLevel)
+                }else {
+                    logIt("\r\n"+logContent, tempLevel)
+                }
+                count++
             }
-            logIt(msg, tempLevel) // 打印剩余日志
+            logIt("\r\n"+msg, tempLevel) // 打印剩余日志
         }
     }
 
