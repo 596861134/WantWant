@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.want.want.fragment.collect.CollectionViewModel" />
+            type="com.want.want.fragment.collect.viewmodel.CollectionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,12 +1,10 @@
-package com.want.want.fragment.collect
+package com.want.want.fragment.collect.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.want.common.CommonUtil
 import com.want.common.ItemType
 import com.want.common.rv.BaseMultiItemViewModel
 import com.want.common.rv.QuickMultiAdapter
-import com.want.common.utils.logWithTag
 import com.want.common.utils.showToast
 import com.want.common.viewmodel.BaseRepositoryViewModel
 import com.want.network.util.launch
@@ -22,6 +20,7 @@ import com.want.want.common.CollectContentPage
 import com.want.want.common.EditDialogEvent
 import com.want.want.common.EditDialogEventBean
 import com.want.want.common.EditPage
+import com.want.want.fragment.collect.CollectContentRepository
 import com.want.want.fragment.home.viewmodel.ItemHomeVM
 import com.want.want.rv.RecyclerViewVM
 import com.want.want.utils.GlobalSingle

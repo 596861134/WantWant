@@ -1,4 +1,4 @@
-package com.want.want.fragment.collect
+package com.want.want.fragment.collect.viewmodel
 
 import android.app.Application
 import com.want.common.viewmodel.BaseLayoutViewModel

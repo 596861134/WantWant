@@ -10,12 +10,13 @@ import com.want.want.R
 import com.want.want.adapter.FragmentAdapter
 import com.want.want.common.CollectContentPage
 import com.want.want.databinding.CollectionFragmentBinding
+import com.want.want.fragment.collect.viewmodel.CollectionViewModel
 import com.want.want.rv.RvScrollToTop
 import com.want.want.utils.GlobalSingle
 import com.youth.banner.transformer.ZoomOutPageTransformer
 
 class CollectionFragment : BaseViewModelFragment<CollectionViewModel,CollectionFragmentBinding>(
-    R.layout.collection_fragment,CollectionViewModel::class.java) ,RvScrollToTop{
+    R.layout.collection_fragment, CollectionViewModel::class.java) ,RvScrollToTop{
 
     private val mFragments = arrayListOf<CollectContentFragment>()
     private val mTitles = arrayListOf("收藏文章","面试相关","分享文章","收藏网站")

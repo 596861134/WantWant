@@ -14,6 +14,7 @@ import com.want.want.bean.CollectChangeBean
 import com.want.want.common.CollectContentPage
 import com.want.want.common.EditPage
 import com.want.want.databinding.CollectionFragmentBinding
+import com.want.want.fragment.collect.viewmodel.CollectContentViewModel
 import com.want.want.rv.RvScrollToTop
 import com.want.want.utils.DialogUtil
 import com.want.want.utils.GlobalSingle

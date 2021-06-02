@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.want.want.fragment.collect.ItemCollectWebsiteVM" />
+            type="com.want.want.fragment.collect.viewmodel.ItemCollectWebsiteVM" />
     </data>
 
     <androidx.cardview.widget.CardView

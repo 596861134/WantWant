@@ -1,11 +1,13 @@
 package com.want.want.activity.main
 
+import android.view.KeyEvent
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.want.common.utils.isNotNull
+import com.want.common.utils.showToast
 import com.want.common.view.BaseViewModelActivity
 import com.want.want.R
 import com.want.want.adapter.FragmentAdapter
@@ -24,6 +26,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel, ActivityMainBinding>(R
     private lateinit var bottomNavigation: BottomNavigationView
     private val mFragments = mutableListOf<Fragment>()
     private var mPagePosition:Int = 0
+    private var lastExitRequestTime:Long = 0L
 
     override fun onViewInit() {
         super.onViewInit()
@@ -94,5 +97,27 @@ class MainActivity : BaseViewModelActivity<MainViewModel, ActivityMainBinding>(R
         }
         menu = bottomNavigation.menu.getItem(position)
         menu?.isChecked = true
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            exitOnSecondTime()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun exitOnSecondTime(){
+        lastExitRequestTime = if (System.currentTimeMillis() - lastExitRequestTime <= 2000){
+            goHome()
+            0L
+        }else {
+            "再次点击返回退出".showToast()
+            System.currentTimeMillis()
+        }
+    }
+
+    private fun goHome() {
+        moveTaskToBack(true)
     }
 }
