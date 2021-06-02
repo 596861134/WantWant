@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <include
-            layout="@layout/view_model_benner"
+            layout="@layout/view_model_banner"
             app:banner="@{item.MBannerVM}"
             />
 
