@@ -10,6 +10,37 @@ import retrofit2.http.*
  */
 interface ApiService {
 
+    /**
+     * 登录
+     */
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun userLogin(@Field("username") username: String?,
+                          @Field("password") password: String?): Response<UserBean>?
+
+    /**
+     * 注册 username password repassword
+     */
+    @FormUrlEncoded
+    @POST("/user/register")
+    suspend fun userRegister(
+        @Field("username") username: String?,
+        @Field("password") password: String?,
+        @Field("repassword") repassword: String?
+    ): Response<UserBean>?
+
+    //退出
+    @GET("/user/logout/json")
+    suspend fun userLogout(): BaseBean
+
+    //获取个人积分，需要登录后访问
+    @GET("lg/coin/userinfo/json")
+    suspend fun coinUserInfo(): CoinUserInfoBean
+
+    //积分排行榜接口
+    @GET("/coin/rank/{page}/json")
+    suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
+
     //首页banner
     @GET("/banner/json")
     suspend fun banner(): BannerDataBean
@@ -53,36 +84,20 @@ interface ApiService {
     @POST("/lg/uncollect/{id}/json")
     suspend fun unCollectInMe(@Path("id") id: Int, @Field("originId") originId: Int): BaseBean
 
-    /**
-     * 登录
-     */
+    //分享文章
     @FormUrlEncoded
-    @POST("user/login")
-    suspend fun userLogin(@Field("username") username: String?,
-                          @Field("password") password: String?): Response<UserBean>?
+    @POST("/lg/user_article/add/json")
+    suspend fun addMyArticle(@Field("title") title: String?,
+                             @Field("link") link: String?
+    ): BaseBean
 
-    /**
-     * 注册 username password repassword
-     */
-    @FormUrlEncoded
-    @POST("/user/register")
-    suspend fun userRegister(
-        @Field("username") username: String?,
-        @Field("password") password: String?,
-        @Field("repassword") repassword: String?
-    ): Response<UserBean>?
+    //自己分享的文章
+    @GET("/user/lg/private_articles/{page}/json")
+    suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
 
-    //退出
-    @GET("/user/logout/json")
-    suspend fun userLogout(): BaseBean
-
-    //获取个人积分，需要登录后访问
-    @GET("lg/coin/userinfo/json")
-    suspend fun coinUserInfo(): CoinUserInfoBean
-
-    //积分排行榜接口
-    @GET("/coin/rank/{page}/json")
-    suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
+    //删除自己分享的文章  id
+    @POST("lg/user_article/delete/{id}/json")
+    suspend fun delMyArticle(@Path("id") id: Int?): BaseBean
 
     //收藏站外文章 title，author，link
     @FormUrlEncoded
@@ -110,11 +125,13 @@ interface ApiService {
         @Field("link") link: String?
     ): BaseBean
 
-    //分享文章
+    //收藏网站列表
+    @GET("/lg/collect/usertools/json")
+    suspend fun lgCollectWebsiteList(): ArrayDataBean
+
+    //删除收藏网站  id
     @FormUrlEncoded
-    @POST("/lg/user_article/add/json")
-    suspend fun addMyArticle(@Field("title") title: String?,
-                             @Field("link") link: String?
-    ): BaseBean
+    @POST("lg/collect/deletetool/json")
+    suspend fun delCollectWebsite(@Field("id") id: Int): BaseBean
 
 }

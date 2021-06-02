@@ -12,7 +12,7 @@ import java.io.Serializable
  * @date 2020/10/26
  */
 
-@Entity(tableName = "BannerBean")
+//@Entity(tableName = "BannerBean")
 //@TypeConverters(BannerDataListTypeConverter::class)
 data class BannerDataBean(
         @PrimaryKey
@@ -81,10 +81,10 @@ data class ItemDatasBean(
     data class TagBean(var name: String?, var url: String? = null)
 }
 
-@Entity(tableName = "ArrayDataBean")
+//@Entity(tableName = "ArrayDataBean")
 //@TypeConverters(ItemDatasListTypeConverter::class)
 data class ArrayDataBean(
-        @PrimaryKey
+//        @PrimaryKey
         var index: Int,
         var data: List<ItemDatasBean>?,
         var mLastTime: Long = System.currentTimeMillis()
@@ -96,7 +96,7 @@ data class ObjectDataBean(
         var data: DataBean? = null
 ) : BaseBean() {
 
-    @Entity(tableName = "ObjectDataBean_DataBean")
+//    @Entity(tableName = "ObjectDataBean_DataBean")
 //    @TypeConverters(ItemDatasListTypeConverter::class)
     data class DataBean(
             @PrimaryKey(autoGenerate = true)
