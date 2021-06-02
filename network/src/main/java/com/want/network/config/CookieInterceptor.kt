@@ -34,6 +34,8 @@ class CookieInterceptor : Interceptor {
             cookies.forEach {
                 it?.let { builder.addHeader("Cookie", it) }
             }
+            //解决okhttp java.io.IOException: unexpected end of stream on https://www.wanandroid.com/...
+            builder.addHeader("Connection", "close")
             finalResponse = chain.proceed(builder.build())
         }
 
