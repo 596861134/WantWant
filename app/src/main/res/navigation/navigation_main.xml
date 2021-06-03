@@ -22,7 +22,7 @@
         tools:layout="@layout/collection_fragment" />
     <fragment
         android:id="@+id/findFragment"
-        android:name="com.want.want.fragment.FindFragment"
+        android:name="com.want.want.fragment.find.ui.FindFragment"
         android:label="@string/radio_find_text"
         tools:layout="@layout/find_fragment" />
     <fragment

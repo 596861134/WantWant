@@ -12,8 +12,8 @@ import com.want.common.view.BaseViewModelActivity
 import com.want.want.R
 import com.want.want.adapter.FragmentAdapter
 import com.want.want.databinding.ActivityMainBinding
-import com.want.want.fragment.*
 import com.want.want.fragment.collect.CollectionFragment
+import com.want.want.fragment.find.ui.FindFragment
 import com.want.want.fragment.home.HomeFragment
 import com.want.want.fragment.me.MeFragment
 import com.want.want.fragment.question.QuestionsFragment
