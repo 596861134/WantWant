@@ -138,4 +138,8 @@ interface ApiService {
     @GET("tree/json")
     suspend fun treeList(): TreeListBean
 
+    //导航数据
+    @GET("/navi/json")
+    suspend fun naviList(): NaviListBean
+
 }
