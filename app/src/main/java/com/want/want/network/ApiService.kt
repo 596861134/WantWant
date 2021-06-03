@@ -134,4 +134,8 @@ interface ApiService {
     @POST("lg/collect/deletetool/json")
     suspend fun delCollectWebsite(@Field("id") id: Int): BaseBean
 
+    //体系数据
+    @GET("tree/json")
+    suspend fun treeList(): TreeListBean
+
 }
