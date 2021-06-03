@@ -142,4 +142,16 @@ interface ApiService {
     @GET("/navi/json")
     suspend fun naviList(): NaviListBean
 
+    //获取公众号列表
+    @GET("/wxarticle/chapters/json")
+    suspend fun weChatList(): WeChatListBean
+
+    //查看某个公众号历史数据
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun weChatListDetail(
+        @Path("id") id: Int?,
+        @Path("page") page: Int
+    ): ObjectDataBean
+
+
 }
