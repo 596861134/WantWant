@@ -1,7 +1,8 @@
 package com.want.want.fragment.find.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import com.want.common.viewmodel.BaseRepositoryViewModel
+import com.want.want.fragment.find.repository.FindContentProjectTreeRepository
 
-class FindContentProjectTreeViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class FindContentProjectTreeViewModel(app:Application) : BaseRepositoryViewModel<FindContentProjectTreeRepository>(app,FindContentProjectTreeRepository()) {
 }

@@ -1,33 +1,20 @@
 package com.want.want.fragment.find.ui
 
+import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.want.common.view.BaseVMRepositoryFragment
 import com.want.want.R
+import com.want.want.databinding.FindContentTreeFragmentBinding
 import com.want.want.fragment.find.viewmodel.FindContentTreeViewModel
 
-class FindContentTreeFragment : Fragment() {
+class FindContentTreeFragment : BaseVMRepositoryFragment<FindContentTreeViewModel,FindContentTreeFragmentBinding>(R.layout.find_content_tree_fragment) {
 
-    companion object {
-        fun newInstance() = FindContentTreeFragment()
-    }
+    override fun getViewModel(app: Application): FindContentTreeViewModel = FindContentTreeViewModel(app)
 
-    private lateinit var viewModel: FindContentTreeViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.find_content_tree_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FindContentTreeViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

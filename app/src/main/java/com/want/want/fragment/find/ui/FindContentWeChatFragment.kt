@@ -1,33 +1,14 @@
 package com.want.want.fragment.find.ui
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.app.Application
+import com.want.common.view.BaseVMRepositoryFragment
 import com.want.want.R
+import com.want.want.databinding.FindContentWeChatFragmentBinding
 import com.want.want.fragment.find.viewmodel.FindContentWeChatViewModel
 
-class FindContentWeChatFragment : Fragment() {
+class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatViewModel,FindContentWeChatFragmentBinding>(R.layout.find_content_we_chat_fragment) {
 
-    companion object {
-        fun newInstance() = FindContentWeChatFragment()
-    }
+    override fun getViewModel(app: Application): FindContentWeChatViewModel = FindContentWeChatViewModel(app)
 
-    private lateinit var viewModel: FindContentWeChatViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.find_content_we_chat_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FindContentWeChatViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

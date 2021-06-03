@@ -1,7 +1,8 @@
 package com.want.want.fragment.find.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import com.want.common.viewmodel.BaseRepositoryViewModel
+import com.want.want.fragment.find.repository.FindContentWeChatRepository
 
-class FindContentWeChatViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class FindContentWeChatViewModel(app:Application) : BaseRepositoryViewModel<FindContentWeChatRepository>(app,FindContentWeChatRepository()) {
 }
