@@ -153,5 +153,9 @@ interface ApiService {
         @Path("page") page: Int
     ): ObjectDataBean
 
+    //项目(热门项目)
+    @GET("/article/listproject/{page}/json")
+    suspend fun projectList(@Path("page") page: Int): ObjectDataBean
+
 
 }

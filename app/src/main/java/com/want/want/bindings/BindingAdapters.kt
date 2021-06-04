@@ -15,6 +15,7 @@ import com.tencent.smtt.sdk.WebView
 import com.want.common.CommonUtil
 import com.want.common.utils.isNull
 import com.want.common.utils.logWithTag
+import com.want.want.R
 import com.want.want.adapter.BannerAdapter
 import com.youth.banner.Banner
 import com.youth.banner.indicator.Indicator
@@ -133,6 +134,15 @@ fun setAvatar(image:ImageView,path:String?){
             .load(it)
             .into(image)
     }
+}
+
+@BindingAdapter("loadUrl", requireAll = false)
+fun loadUrl(imageView: ImageView, path: String?) {
+    Glide.with(imageView)
+        .applyDefaultRequestOptions(RequestOptions()
+            .placeholder(R.mipmap.place_holder)
+            .centerCrop())
+        .load(path).into(imageView)
 }
 
 @BindingAdapter("etSetSelect")
