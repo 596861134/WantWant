@@ -157,5 +157,13 @@ interface ApiService {
     @GET("/article/listproject/{page}/json")
     suspend fun projectList(@Path("page") page: Int): ObjectDataBean
 
+    //项目分类
+    @GET("/project/tree/json")
+    suspend fun projectTreeList(): ArrayDataBean
+
+    //项目分类
+    @GET("/project/list/{page}/json")
+    suspend fun projectListCid(@Path("page") page: Int,
+                               @Query("cid") cid: Int? = null): ObjectDataBean
 
 }
