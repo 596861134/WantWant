@@ -6,6 +6,8 @@ import com.want.common.rv.BaseItemViewModel
 import com.want.common.utils.getRandomColor
 import com.want.common.utils.showToast
 import com.want.want.activity.X5WebActivity
+import com.want.want.activity.tree.TreeListActivity
+import com.want.want.activity.tree.TreeListViewModel
 import com.want.want.common.CommonItemBean
 import com.want.want.viewmodel.X5WebViewModel
 
@@ -20,13 +22,17 @@ class ItemFindContentTreeAndNaviRightVM(app:Application, private val isNavi: Boo
 
     override fun onItemClick() {
         if (isNavi){
-            startActivity(X5WebActivity::class.java,
+            startActivity(
+                X5WebActivity::class.java,
                 X5WebViewModel.FLAG_BEAN to CommonItemBean(null,mContent.get(),mLink,false),
                 X5WebViewModel.FLAG_SHOW_COLLECT_ICON to false
             )
         }else{
-            // todo TreeListActivity
-            "TreeListActivity".showToast()
+            startActivity(
+                TreeListActivity::class.java,
+                TreeListViewModel.TITLE to mContent.get(),
+                TreeListViewModel.CID to mCid
+            )
         }
     }
 
